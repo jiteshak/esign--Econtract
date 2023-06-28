@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    
+    
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+        </Property>
+        <Property name="LOG_PATTERN2">
+            %d{yyyy-MM-dd HH:mm:ss.SSS}
+        </Property>
+        <Property name="LOG_FILE_PATH">
+            logs
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+<!--        <File name="FileAppender"  fileName="${LOG_FILE_PATH}/app_logger.log">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </File>-->
+        
+        <!-- Rolling File Appender -->
+        <RollingFile name="RollingFile">
+            <FileName>${LOG_FILE_PATH}/application.log</FileName>
+            <FilePattern>${LOG_FILE_PATH}/application-%d{yyyy-MM-dd}-%i.log</FilePattern>
+            <PatternLayout>
+              <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} - %msg%n</Pattern>
+              <!--<Pattern>%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n</Pattern>-->
+            </PatternLayout>
+            <Policies>
+              <SizeBasedTriggeringPolicy size="50 MB" />
+              <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+          </RollingFile>
+          
+          
+        <!-- Rolling File Appender For initiate flow -->
+        <RollingFile name="RollingFileErif">
+            <FileName>${LOG_FILE_PATH}/erif.log</FileName>
+            <FilePattern>${LOG_FILE_PATH}/erif-%d{yyyy-MM-dd}-%i.log</FilePattern>
+            <LevelRangeFilter minLevel="TRACE" maxLevel="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+              <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+              <SizeBasedTriggeringPolicy size="10 MB" />
+              <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+        
+        <!-- Rolling File Appender For third party api -->
+        <RollingFile name="RollingFileAPI">
+            <FileName>${LOG_FILE_PATH}/api.log</FileName>
+            <FilePattern>${LOG_FILE_PATH}/api-%d{yyyy-MM-dd}-%i.log</FilePattern>
+            <LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+              <Pattern>%d{yyyy-MMM-dd HH:mm:ss a} - %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+              <SizeBasedTriggeringPolicy size="10 MB" />
+              <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+        
+    </Appenders>
+    <Loggers>
+        
+        
+        <Logger name="com.econtract.esign" level="all" additivity="false">
+            <AppenderRef ref="RollingFileAPI"/>
+            <AppenderRef ref="RollingFileErif"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+        
+        
+        
+        
+
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender" />
+        </Root>
+        
+    </Loggers>
+</Configuration>

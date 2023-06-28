@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.econtract</groupId>
+	<artifactId>esign</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>esign</name>
+	<description>Econtract project for Spring Boot</description>
+        <packaging>jar</packaging>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-starter-logging</artifactId>
+                        </exclusion>
+                    </exclusions>
+		</dependency>
+                
+                <!-- Add Log4j2 Dependency -->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-log4j2</artifactId>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-jpa</artifactId>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                </dependency>
+                
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-envers</artifactId>
+                    <version>${hibernate.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-security</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>io.jsonwebtoken</groupId>
+                    <artifactId>jjwt</artifactId>
+                    <version>0.9.1</version>
+                </dependency>
+                
+                <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi-ooxml</artifactId>
+                    <version>3.12</version>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                    <version>1.18.8</version>
+                    <scope>provided</scope>
+                 </dependency>
+                
+                <!-- send email -->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-mail</artifactId>
+                </dependency>
+                
+                
+                <dependency>
+                    <groupId>com.github.jhonnymertz</groupId>
+                    <artifactId>java-wkhtmltopdf-wrapper</artifactId>
+                    <version>1.1.12-RELEASE</version>
+                </dependency>
+                
+                
+                
+                <!-- aws -->
+                <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-s3 -->
+                <dependency>
+                    <groupId>com.amazonaws</groupId>
+                    <artifactId>aws-java-sdk-s3</artifactId>
+                    <version>1.11.744</version>
+                </dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sns -->
+                <dependency>
+                    <groupId>com.amazonaws</groupId>
+                    <artifactId>aws-java-sdk-sns</artifactId>
+                    <version>1.11.744</version>
+                </dependency>
+
+                <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-ses -->
+                <dependency>
+                    <groupId>com.amazonaws</groupId>
+                    <artifactId>aws-java-sdk-ses</artifactId>
+                    <version>1.11.744</version>
+                </dependency>
+                
+                
+                
+                
+                
+                <!-- nsdl dependency -->
+                <dependency>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk15on</artifactId>
+                    <version>1.54</version>
+                </dependency>
+                <dependency>
+                    <groupId>bouncycastle</groupId>
+                    <artifactId>bouncycastle-jce-jdk13</artifactId>
+                    <version>112</version>
+                </dependency>
+                <dependency>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                    <version>1.9</version>
+                </dependency>
+                <dependency>
+                    <groupId>commons-io</groupId>
+                    <artifactId>commons-io</artifactId>
+                    <version>2.5</version>
+                </dependency>
+                <dependency>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                    <version>1.2</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.pdfbox</groupId>
+                    <artifactId>fontbox</artifactId>
+                    <version>2.0.8</version>
+                </dependency>
+<!--                <dependency>
+                    <groupId>org.apache.pdfbox</groupId>
+                    <artifactId>pdfbox</artifactId>
+                    <version>2.0.8</version>
+                </dependency>-->
+                <dependency>
+                    <groupId>org.apache.pdfbox</groupId>
+                    <artifactId>apache-pdfbox</artifactId>
+                    <version>1.4</version>
+                    <scope>compile</scope>
+                    <!--<systemPath>${basedir}/lib/v1.4_pdfbox-2.0.8_MultiO.jar</systemPath>-->
+                    <!--<type>jar</type>-->
+                </dependency>
+                <dependency>
+                    <groupId>com.nsdl.esign</groupId>
+                    <artifactId>nsdl-esign</artifactId>
+                    <version>1.0</version>
+                    <scope>compile</scope>
+                    <!--<systemPath>${basedir}/lib/v1.0_Nsdl_eSign2.1_MultiO.jar</systemPath>-->
+                    <!--<type>jar</type>-->
+                </dependency>
+                
+                
+                <!--adid packages-->
+                <dependency>
+                    <groupId>org.opensaml</groupId>
+                    <artifactId>opensaml</artifactId>
+                    <version>2.6.4</version>
+                    <scope>compile</scope>
+                </dependency>
+                
+                
+                <dependency>
+                    <groupId>org.modelmapper</groupId>
+                    <artifactId>modelmapper</artifactId>
+                    <version>2.3.0</version>
+                </dependency>
+                
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+
+
+<!--mvn install:install-file -Dfile=D:\projects\econtract\nsdltest\lib\v1.0_Nsdl_eSign2.1_MultiO.jar -DgroupId=com.nsdl.esign -DartifactId=nsdl-esign -Dversion=1.0 -Dpackaging=jar-->
+<!--mvn install:install-file -Dfile=D:\projects\econtract\nsdltest\lib\v1.4_pdfbox-2.0.8_MultiO.jar -DgroupId=org.apache.pdfbox -DartifactId=apache-pdfbox -Dversion=1.4 -Dpackaging=jar -DgeneratePom=true-->
